@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FilePond Plugin Manage Metadata</title>
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link href="./dist/filepond-plugin-manage-metadata.css" rel="stylesheet">
+    <link href="https://nielsboogaard.github.io/filepond-plugin-image-overlay/dist/filepond-plugin-image-overlay.css" rel="stylesheet">
+    <link href="https://nielsboogaard.github.io/filepond-plugin-get-file/dist/filepond-plugin-get-file.css" rel="stylesheet">
+    <style>
+        .demo {
+            text-align: center;
+            font-family: Helvetica;
+            margin: 4em auto 0;
+            width: 450px;
+        }
+        a {
+            color: dodgerblue;
+            text-decoration: none;
+        }
+        a:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="demo">
+        <h3>Manage Metadata plugin for FilePond demo</h3>
+        <input type="file" multiple="true"/>
+        <a onclick="enableAdditionalPlugins()">Enable additional plugins</a> | <a href="https://github.com/nielsboogaard/filepond-plugin-manage-metadata">Return to the source code</a>
+    </div>
+    
+    <script src="./dist/filepond-plugin-manage-metadata.js"></script>
+    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <script src="https://nielsboogaard.github.io/filepond-plugin-image-overlay/dist/filepond-plugin-image-overlay.js"></script>
+    <script src="https://nielsboogaard.github.io/filepond-plugin-get-file/dist/filepond-plugin-get-file.js"></script>
+
+    <script>
+        // Get a reference to the file input element
+        const inputElement = document.querySelector('input[type="file"]');
+
+        function enableAdditionalPlugins() {
+            FilePond.registerPlugin(FilePondPluginImageOverlay);
+            FilePond.registerPlugin(FilePondPluginGetFile);
+            FilePond.destroy(inputElement);
+            init();
+        }
+
+        function init() {
+            // Register the plugin with FilePond
+            FilePond.registerPlugin(FilePondPluginManageMetadata);
+
+            // Create the FilePond instance
+            const pond = FilePond.create(inputElement, {
+                onManageMetadata: function(item) {
+                    console.log('onManageMetadata hook called', item);
+                }
+            });
+            pond.addFile('./nature.jpg');
+        }
+
+        init();
+    </script>
+
+</body>
+</html>
