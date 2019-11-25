@@ -54,11 +54,7 @@
             FilePond.registerPlugin(FilePondPluginManageMetadata);
 
             // Create the FilePond instance
-            const pond = FilePond.create(inputElement, {
-                onManageMetadata: function(item) {
-                    console.log('onManageMetadata hook called', item);
-                }
-            });
+            const pond = FilePond.create(inputElement);
             pond.addFile('./nature.jpg');
         }
 

@@ -69,12 +69,19 @@
           'GET_LABEL_BUTTON_MANAGE_METADATA'
         );
         const onManageMetadata = root.query('GET_ON_MANAGE_METADATA');
-        registerManageMetadataComponent(
-          item,
-          root.element,
-          labelButtonManageMetadata,
-          onManageMetadata
-        );
+
+        if (onManageMetadata) {
+          registerManageMetadataComponent(
+            item,
+            root.element,
+            labelButtonManageMetadata,
+            onManageMetadata
+          );
+        } else {
+          console.error(
+            "No 'onManageMetadata' callback method specified for FilePondPluginManageMetadata! See https://github.com/nielsboogaard/filepond-plugin-manage-metadata for more instructions."
+          );
+        }
       }; // start writing
 
       view.registerWriter(
