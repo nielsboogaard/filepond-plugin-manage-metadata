@@ -42,6 +42,7 @@ The following options can be provided:
 ```js
 const pond = FilePond.create({
     name: 'filepond',
+    enableManageMetadata: true, // by default true, can be used to disable this plugin for a particular FilePond instance
     labelButtonManageMetadata: 'custom label', // by default 'Edit metadata'
     onManageMetadata: (item) => console.log('onManageMetadata hook called', item) // callback method which will be called upon clicking the edit icon
 });
