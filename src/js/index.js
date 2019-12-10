@@ -28,6 +28,11 @@ const plugin = fpAPI => {
                 return;
             }
 
+            const enableManageMetadata = root.query('GET_ENABLE_MANAGE_METADATA');
+            if (!enableManageMetadata) {
+                return; // not enabled, so hide this plugin
+            }
+
             const labelButtonManageMetadata = root.query('GET_LABEL_BUTTON_MANAGE_METADATA');
             const onManageMetadata = root.query('GET_ON_MANAGE_METADATA');
 
@@ -55,6 +60,7 @@ const plugin = fpAPI => {
     // expose plugin
     return {
         options: {
+            enableManageMetadata: [true, Type.BOOLEAN],
             labelButtonManageMetadata: ['Edit metadata', Type.STRING],
             onManageMetadata: [null, Type.FUNCTION],
         }
