@@ -1,19 +1,19 @@
 /*!
- * FilePondPluginManageMetadata 1.0.4
+ * FilePondPluginManageMetadata 1.0.5
  * Licensed under MIT, https://opensource.org/licenses/MIT/
  * Please visit undefined for details.
  */
 
 /* eslint-disable */
 
-(function(global, factory) {
+(function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined'
     ? (module.exports = factory())
     : typeof define === 'function' && define.amd
     ? define(factory)
     : ((global = global || self),
       (global.FilePondPluginManageMetadata = factory()));
-})(this, function() {
+})(this, function () {
   'use strict';
 
   /**
@@ -34,7 +34,7 @@
    * Generates the download icon
    */
 
-  const getEditIcon = labelButtonEditMetadata => {
+  const getEditIcon = (labelButtonEditMetadata) => {
     let icon = document.createElement('span');
     icon.className = 'filepond--edit-icon';
     icon.title = labelButtonEditMetadata;
@@ -45,11 +45,11 @@
    * Manage Metadata Plugin
    */
 
-  const plugin = fpAPI => {
+  const plugin = (fpAPI) => {
     const { addFilter, utils } = fpAPI;
     const { Type, createRoute } = utils; // called for each view that is created right after the 'create' method
 
-    addFilter('CREATE_VIEW', viewAPI => {
+    addFilter('CREATE_VIEW', (viewAPI) => {
       // get reference to created view
       const { is, view, query } = viewAPI; // only hook up to item view
 
@@ -93,7 +93,7 @@
       view.registerWriter(
         createRoute(
           {
-            DID_LOAD_ITEM: didLoadItem
+            DID_LOAD_ITEM: didLoadItem,
           },
           ({ root, props }) => {
             const { id } = props;
@@ -109,8 +109,8 @@
       options: {
         enableManageMetadata: [true, Type.BOOLEAN],
         labelButtonManageMetadata: ['Edit metadata', Type.STRING],
-        onManageMetadata: [null, Type.FUNCTION]
-      }
+        onManageMetadata: [null, Type.FUNCTION],
+      },
     };
   }; // fire pluginloaded event if running in browser, this allows registering the plugin when using async script tags
 
@@ -120,7 +120,7 @@
   if (isBrowser) {
     document.dispatchEvent(
       new CustomEvent('FilePond:pluginloaded', {
-        detail: plugin
+        detail: plugin,
       })
     );
   }
