@@ -1,5 +1,5 @@
 /*!
- * FilePondPluginManageMetadata 1.0.6
+ * FilePondPluginManageMetadata 1.0.7
  * Licensed under MIT, https://opensource.org/licenses/MIT/
  * Please visit undefined for details.
  */
