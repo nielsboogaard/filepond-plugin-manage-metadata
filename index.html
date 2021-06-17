@@ -54,7 +54,11 @@
             FilePond.registerPlugin(FilePondPluginManageMetadata);
 
             // Create the FilePond instance
-            const pond = FilePond.create(inputElement);
+            const pond = FilePond.create(inputElement, {
+                enableManageMetadata: true, // by default true, can be used to disable this plugin for a particular FilePond instance
+                labelButtonManageMetadata: 'Edit metadata', // by default 'Edit metadata'
+                onManageMetadata: (item) => console.log('onManageMetadata hook called', item) 
+            });
             pond.addFile('./nature.jpg');
         }
 
